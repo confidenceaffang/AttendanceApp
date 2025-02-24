@@ -171,16 +171,16 @@ public class AttendanceApp {
      * @throws Exception getPlayer could throw an invalid jersey error
      */
     private void updateTeamStats(Course course) throws Exception {
-        int jersey;
-        Player player;
+        int seat;
+        Student student;
         while (true) {
-            jersey = Input.getIntRange("Enter " + team.getName() + "'s Jersey # ", 1, 55);
-                    player = course.getStudent(seat);
-            if (player == null) {
+            seat = Input.getIntRange("Enter " + student.getName() + "'s Jersey # ", 1, 55);
+            student = course.getStudent(seat);
+            if (student == null) {
                 System.out.println("Invalid #, please try again!");
                 continue;
             }
-            this.updatePlayerStats(player);
+            this.updatePlayerStats(student);
             break;
         }
         System.out.println();
