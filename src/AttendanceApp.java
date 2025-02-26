@@ -63,13 +63,13 @@ public class AttendanceApp {
         String userInput;
         userInput = Input.getLine("Enter the HOME Team name: ");
         homeTeam.setName(userInput);
-        this.setupPlayers(homeTeam);
+        this.setupStudents(homeTeam);
         System.out.println();
         System.out.println(SINGLE_LINE);
         System.out.println();
         userInput = Input.getLine("Enter the AWAY TEAM name: ");
         this.awayTeam.setName(userInput);
-        this.setupPlayers(this.awayTeam);
+        this.setupStudents(this.awayTeam);
     } // end of setupTeams
     /**
      * Sets up the team's players.<br>
@@ -80,7 +80,7 @@ public class AttendanceApp {
      * Enter Wildcats player's name or 'q' to quit: user input
      * Enter Billy's jersey number: user input
      * </pre>
-     * @param team The team to setup players for.
+     * @param course The team to setup players for.
      */
     private void setupStudents(Course course) {
         String teamName = course.getName();
@@ -170,7 +170,7 @@ public class AttendanceApp {
      * @param course The team to update stats for.
      * @throws Exception getPlayer could throw an invalid jersey error
      */
-    private void updateTeamStats(Course course) throws Exception {
+    private void CourseAttendance(Course course) throws Exception {
         int seat;
         Student student;
         while (true) {
@@ -202,14 +202,14 @@ public class AttendanceApp {
      * #10 Billy Fouls=0 Points=2
      * -----------------------------------------
      * </pre>
-     * @param player The player to enter stats for
+     * @param student The student to enter stats for
      */
-    private void updatePlayerStats(Player player) {
+    private void StudentAttendance(Student student) {
         int type;
         System.out.println();
         System.out.println(SINGLE_LINE);
-        System.out.println("Enter #" + player.getJersey() + " "
-                +player.getName() + " Stats");
+        System.out.println("Enter #" + student.getSeat() + " "
+                +student.getName() + " Stats");
         System.out.println(SINGLE_LINE);
         System.out.println("0 = foul");
         System.out.println("1 = free throw");
@@ -219,27 +219,28 @@ public class AttendanceApp {
         type = Input.getIntRange("Enter Stat Type: ", 0, 3);
         System.out.println(SINGLE_LINE);
         try {
-            player.updateStats(type);
+            student.updateAttendance(type);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("Unable to update player's stats!");
         }
-        player.displayStats();
+        student.displayAttendance();
     }
     /**
      * Display the updated Scoreboard for both teams. Calls the Team's
      displayTeamStats
      * for both the home and away teams.
      */
+    /*
     private void updateScoreboard() {
         this.homeTeam.displayTeamStats();
         this.awayTeam.displayTeamStats();
-    }
+    }*/
     /**
      * Display all team player's detail stats. call the displayDetailsStats
      * for both the home and away teams.
      */
-    private void displayGameStatus() {
+    private void displayDetailReports() {
         this.homeTeam.displayDetailStats();
         this.awayTeam.displayDetailStats();
     } // end of playGame

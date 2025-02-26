@@ -2,31 +2,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Use to keep track of a basketball Team that is made up with multiple Players along with the Team's stats.
- * @author dejohns2
- * @since 2025.02.22
+ * Use to keep track of the courses
+ * @author Confidence Mawuli Affang
  * @version 1.0 beta
- * @see <a href="https://github.com/dejohns2/JavaSection3_BB_Scoreboard_Spring2025.git">GitHub Repository</a>
+ * @see <a href="https://github.com/confidenceaffang/AttendanceApp.git">GitHub Repository</a>
  */
 public class Course {
 
     /**
-     * The team's name.
+     * The Course's name.
      */
     private String name;
 
-    /** The team's players. */
+    /** The Course's players. */
     private final List<Student> allStudents;
 
-    /** Sets the team's name to "Unknown", and assigns players to an empty new ArrayList */
+    /** Sets the Course's name to "Unknown", and assigns allStudents to an empty new ArrayList */
     public Course() {
         name = "Unknown";
         allStudents = new ArrayList<>();
     }
 
     /**
-     * Calls the default constructor, and then set's the team's name using the setter for data validation.
-     * @param name the team's name
+     * Calls the default constructor, and then set's the Course's name using the setter for data validation.
+     * @param name the Course's name
      * @throw Exception if the setName fails due to a blank name
      */
     public Course(String name) throws Exception {
@@ -35,15 +34,15 @@ public class Course {
     }
 
     /**
-     * Gets the team's name.
-     * @return The team's name.
+     * Gets the Course's name.
+     * @return The Course's name.
      */
     public String getName() { return this.name; }
 
     /**
-     * Set the teams's name.
-     * @param name the teams's name
-     * @throws Exception if the team's name is blank (whitespace or empty)<br>
+     * Set the course's name.
+     * @param name the course's name
+     * @throws Exception if the course's name is blank (whitespace or empty)<br>
      * Error Example: Student name can not be blank.
      */
     public void setName(String name) throws Exception {
@@ -51,18 +50,18 @@ public class Course {
 
         //isBlank checks for both empty or whitespace
         if (name.isBlank())
-            throw new Exception("Student name can not be blank.");
+            throw new Exception("Course name can not be blank.");
 
         this.name = name;
     } // end of setName method
 
     /**
-     * Get a Player by their jersey number using the ArrayList.indexOf method<br>
+     * Get a Student by their seat number using the ArrayList.indexOf method<br>
      * If the indexOf method returns -1 then this method returns null otherwise,<br>
-     * it returns the Player object associated with the jersey number.
-     * @param seat The Player's jersey number.
-     * @return If a Player is found, it will return the Player object otherwise a null value.
-     * @throws Exception Creating a player with a invalid jersey number could throw an error
+     * it returns the student object associated with the seat number.
+     * @param seat The student's seat number.
+     * @return If a Student is found, it will return the student object otherwise a null value.
+     * @throws Exception Creating a student with an invalid seat number could throw an error
      */
     public Student getStudent(int seat) throws Exception {
 
@@ -76,19 +75,19 @@ public class Course {
     }
 
     /**
-     * Add a player to the Team, by using the overload constructor that allows setting their name and jersey number too.<br>
-     * This method will verify that the jersey number is not already used by another player by calling the Team.getPlayer method.<br>
+     * Add a student to the course, by using the overload constructor that allows setting their name and seat number too.<br>
+     * This method will verify that the seat number is not already used by another student by calling the Course.getStudent method.<br>
      * and if it is, then it will throw an exception back to the calling method
-     * @param name The Player's name.
-     * @param seat The Player's jersey number.
-     * @throws Exception Jersey number # already assigned.
+     * @param name The Student's name.
+     * @param seat The Student's seat number.
+     * @throws Exception Seat number # already assigned.
      */
     public void addStudent(String name, int seat) throws Exception {
-        Student player = this.getSeat(seat);
-        if(player == null) {
+        Student student = new Student(seat);
+        if(student == null) {
             this.allStudents.add(new Student(seat, name));
         } else {
-            throw new Exception("Jersey #" + seat + " already assigned to " + player.getName() + "!");
+            throw new Exception("Seat #" + seat + " already assigned to " + student.getName() + "!");
         }
     }
 
