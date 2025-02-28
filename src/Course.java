@@ -93,88 +93,62 @@ public class Course {
 
 
     /**
-     * Get the total number of points for the entire Team by calling the Player.getPoints method.
-     * Uses a for loop to sum all the team's players points by calling the player's getPoints
-     * method.
-     * @return The Teams's points.
-     */
-    /*
-    public int getTeamPoints() {
-        int totalPoints = 0;
-
-        for (Student player : this.allStudents) {
-            totalPoints += player.getPoints();
-        }
-
-        return totalPoints;
-    }
-*/
-    /**
-     * Get the total number of fouls for the entire Team using the Player.getFouls method.
-     * Uses a for loop to sum all the team's players fouls by calling the player's getFouls
-     * method.
-     * @return The total number of fouls for the Team.
-     */
-    /*
-    public int getTeamFouls() {
-        int totalFouls = 0;
-
-        for (Student player : this.players) {
-            totalFouls += player.getFouls();
-        }
-
-        return totalFouls;
-    }
-    */
-
-    /**
-     * Display the Team's summary stats using the Team.getTeamFouls and getTeamPoints methods.<br>
-     * Example: <br>
-     * <pre>Team Wildcats Fouls=4 Points=23</pre>
+     *Displays the totals for all students in the course
+     *
      */
     public void displaySummaryReport() {
-        System.out.println("Team " + this.name + " Fouls=" + this.getTeamFouls() + " Points=" + this.getTeamPoints());
+        Student student ;
+        int totalOntime = 0;
+        int totalLate= 0;
+        int totalExcused = 0;
+        int totalUnexcused = 0;
+
+        for (Student value : allStudents) {
+            student = value;
+            totalOntime += student.getOnTime();
+            totalLate += student.getLate();
+            totalExcused += student.getExcused();
+            totalUnexcused += student.getUnexcused();
+        }
+
+
+        System.out.println(this.name + ": " +  "Ontime=" + totalOntime + " Late=" + totalLate + " Excused=" + totalExcused + "  Unexcused=" + totalUnexcused);
     }
 
     /**
-     * Displays each Player's detail stats for the entire Team using the Player's getter methods.<br>
-     * This method uses the printf method for proper stats alignment. Example:<br>
-     * <pre>
-     * Jersey Name            Fouls 1pt 2pt 3pt Total
-     * ====== =============== ===== === === === =====
-     *    10  Billy               1   2   3   1    10
-     *    24  Tammy               0   0   2   0     4
-     * </pre>
+     * Displays each Student's detail stats for the entire Course using the Student's getter methods.<br>
+     * Using an enhanced for loop to loop through all students
+     *
      */
+
     public void displayDetailReport() {
 
         Student student;
 
         displaySummaryReport();
 
-        System.out.println("Jersey Name            Fouls 1pt 2pt 3pt Total");
+        System.out.println("Seat Name            OnTime Late Excused Unexcused");
         System.out.println("====== =============== ===== === === === =====");
 
         for (Student value : allStudents) {
 
             student = value;
 
-            System.out.printf("%6d %-15s %5d %3d %3d %3d %5d\n",
-                    student.getJersey(),
+            System.out.printf("%6d %-15s %5d %3d %3d %3d\n",
+                    student.getSeat(),
                     student.getName(),
-                    student.getFouls(),
-                    student.getFieldGoals_1pt(),
-                    student.getFieldGoals_2pt(),
-                    student.getFieldGoals_3pt(),
-                    student.getPoints());
-        }
+                    student.getOnTime(),
+                    student.getLate(),
+                    student.getExcused(),
+                    student.getUnexcused());
+        };
 
         System.out.println();
     }
 
     /**
-     * Returns the team's name.
-     * @return Team name.
+     * Returns the course's name.
+     * @return course name.
      */
     @Override
     public String toString(){
